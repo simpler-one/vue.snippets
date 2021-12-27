@@ -3,6 +3,7 @@
     :class="class"
     :visible="visible"
     :persistent="mandatory"
+    :color="bgColor"
     @input="onInput"
   >
     <div class="dialog-head">
@@ -48,8 +49,8 @@ export default {
   data() {
   },
   computed: {
-    messages(): {  },
-    buttons() {  },
+    messages(): { return toArray(this.message); },
+    buttons() { return toArray(this.button); },
   },
 
   methods: {
