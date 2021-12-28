@@ -9,6 +9,8 @@
     <div class="dialog-head">
       <foo-icon v-if="icon" :color="icon.color">{{icon.name}}</foo-icon>
       {{title}}
+      
+      <span class="dialog-close-button" @click="confirm(undefined)">x</span>
     </div>
 
     <div class="dialog-body">
@@ -17,7 +19,10 @@
 
     <div class="dialog-foot">
       <span v-for="btn of buttons">
-        <foo-btn :class="btn.styleClass" @click="onButtonClicked(btn)">{{btn.text}}</foo-btn>
+        <foo-btn :class="btn.class" v-bind="btn.props" @click="onButtonClicked(btn)">
+          <foo-icon>{{btn.icon}}</foo-icon>
+          {{btn.text}}
+        </foo-btn>
       <span>
     </div>
   </foo-modal>
