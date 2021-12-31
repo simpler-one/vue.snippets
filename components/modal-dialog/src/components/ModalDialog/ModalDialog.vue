@@ -30,7 +30,7 @@
 
 
 <script>
-const DEFAULT_ICON = DialogIcon.None;
+import DialogIcon from "./DialogIcon";
 
 
 export default {
@@ -40,7 +40,7 @@ export default {
     visible: { type: Boolean, required: true },
     mandatory: { type: Boolean, required: false, default: false },
 
-    icon: { type: [String, DialogIcon], required: false, default: () => DEFAULT_ICON },
+    icon: { type: [String, DialogIcon], required: false, default: () => DialogIcon.Empty },
     title: { type: String, required: false, default: "" },
 
     message: { type: [String, Array], required: false, default: () => [] },
