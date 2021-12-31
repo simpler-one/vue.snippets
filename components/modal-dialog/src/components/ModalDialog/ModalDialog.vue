@@ -17,6 +17,8 @@
       <p v-if="msg of messages">{{msg}}</p>
     </div>
 
+    <slot />
+
     <div class="dialog-foot">
       <span v-for="btn of buttons">
         <foo-btn :class="btn.class" v-bind="btn.props" @click="onButtonClicked(btn)">
