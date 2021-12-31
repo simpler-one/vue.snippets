@@ -1,5 +1,7 @@
 import ModalDialogProps from "./ModalDialogProps";
 import ModalDialogListeners from "./ModalDialogListeners";
+import DialogIcon from "./DialogIcon";
+import DialogButton from "./DialogButton";
 
 
 export default class ModalDialogHelper {
