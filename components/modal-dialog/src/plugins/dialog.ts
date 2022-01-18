@@ -1,3 +1,4 @@
+import Vue from "vue";
 import { ModalDialogHelper, ModalDialogProps } from "@/components/ModalDialog";
 
 
@@ -7,5 +8,5 @@ const DEFAULT_PROPS: { [mode: string]: ModalDialogProps } = {
 
 
 export default function install({}, inject) {
-    inject("dialog", new ModalDialogHelper());
+    inject("dialog", Vue.observable(new ModalDialogHelper()));
 }
