@@ -7,20 +7,20 @@
     @input="onInput"
   >
     <div class="dialog-head">
-      <foo-icon v-if="icon" :color="icon.color">{{icon.name}}</foo-icon>
+      <foo-icon v-if="icon_" :color="icon_.color">{{icon_.name}}</foo-icon>
       {{title}}
       
       <span class="dialog-close-button" @click="confirm(undefined)">x</span>
     </div>
 
     <div class="dialog-body">
-      <p v-if="msg of messages">{{msg}}</p>
+      <p v-for="msg of messages" :key="msg">{{msg}}</p>
     </div>
 
     <slot />
 
     <div class="dialog-foot">
-      <span v-for="btn of buttons">
+      <span v-for="btn of buttons" :key="btn.text">
         <foo-btn :class="btn.class" v-bind="btn.props" @click="onButtonClicked(btn)">
           <foo-icon>{{btn.icon}}</foo-icon>
           {{btn.text}}
@@ -31,8 +31,10 @@
 </template>
 
 
-<script>
-import DialogIcon from "./DialogIcon";
+<script lang="ts">
+import Standardizer from "../../../../Standardizer";
+import DialogIcon from "../DialogIcon";
+import DialogButton from "../DialogButton";
 
 
 export default {
@@ -56,8 +58,9 @@ export default {
   data() {
   },
   computed: {
-    messages(): { return toArray(this.message); },
-    buttons() { return toArray(this.button); },
+    icon_() { return DialogIcon.Standardizer.apply(this.icon); },
+    messages() { return Standardizer.Array.apply(this.message); },
+    buttons() { return Standardizer.Array.apply(this.button); },
   },
 
   methods: {

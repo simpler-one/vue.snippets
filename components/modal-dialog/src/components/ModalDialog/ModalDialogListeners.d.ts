@@ -1,4 +1,4 @@
-import DialogButton from "./DialogButton";
+import DialogButton from "../DialogButton";
 
 
 export default interface ModalDialogListeners {

@@ -1,34 +1,37 @@
 <template>
-  <ModalDialog v-bind="dialog.props" v-on="dialog.listeners" />
-
   <div>
+    <ModalDialog v-bind="dialog.props" v-on="dialog.listeners" />
+
     <div>
-      <button @click="onNormalClicked">Normal</button>: {{normalDialogResult}}
+      <div>
+        <button @click="onNormalClicked">Normal</button>: {{normalDialogResult}}
+      </div>
+      <div>
+        <button @click="onNormalClicked">Info</button>: {{infoDialogResult}}
+      </div>
+      <div>
+        <button @click="onNormalClicked">Warn</button>: {{warnDialogResult}}
+      </div>
+      <div>
+        <button @click="onPluginClicked">Plugin</button>: {{pluginDialogResult}}
+      </div>
+      <div>
+        <button @click="onPluginClicked">PluginAlert</button>: {{pluginAlertDialogResult}}
+      </div>
     </div>
-    <div>
-      <button @click="onNormalClicked">Info</button>: {{infoDialogResult}}
-    </div>
-    <div>
-      <button @click="onNormalClicked">Warn</button>: {{warnDialogResult}}
-    </div>
-    <div>
-      <button @click="onPluginClicked">Plugin</button>: {{pluginDialogResult}}
-    </div>
-    <div>
-      <button @click="onPluginClicked">PluginAlert</button>: {{pluginAlertDialogResult}}
-    </div>
-  <div>
-</tempalte>
+  </div>
+</template>
 
 
-<script>
-import ModalDialog, { ModalDialogHelper, DialogButtons } from ".../components/ModalDialog";
+<script lang="ts">
+import ModalDialog from "../components/ModalDialog";
+import DialogButtons from "../components/DialogButtons";
 
 
 export default {
   data() {
     return {
-      dialog = new ModalDialogHelper(),
+      dialog: new ModalDialog.Helper(),
       normalDialogResult: "---",
       infoDialogResult: "---",
       warnDialogResult: "---",

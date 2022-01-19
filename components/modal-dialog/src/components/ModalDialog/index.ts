@@ -1,5 +1,12 @@
-export { default } from "./ModalDialog";
-export { default as ModalDialogProps } from "./ModalDialogProps";
-export { default as ModalDialogHelper } from "./ModalDialogHelper";
-export { default as DialogButton } from "./DialogButton";
-export { default as DialogIcon } from "./DialogIcon";
+import ModalDialog from "./ModalDialog.vue";
+import ModalDialogProps from "./ModalDialogProps";
+import ModalDialogListeners from "./ModalDialogProps";
+import ModalDialogHelper from "./ModalDialogHelper";
+
+namespace ModalDialog {
+    export type Props = ModalDialogProps;
+    export type Listeners = ModalDialogListeners;
+    export const Helper = ModalDialogHelper;
+}
+
+export default ModalDialog;

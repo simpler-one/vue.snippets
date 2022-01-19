@@ -1,7 +1,6 @@
 import ModalDialogProps from "./ModalDialogProps";
 import ModalDialogListeners from "./ModalDialogListeners";
-import DialogIcon from "./DialogIcon";
-import DialogButton from "./DialogButton";
+import DialogButton from "../DialogButton";
 
 
 export default class ModalDialogHelper {
@@ -11,13 +10,15 @@ export default class ModalDialogHelper {
     private defaultProps: DefaultPropsTable;
     private callbacks: ModalDialogListeners;
 
-    public constructor(defaultProps: DefaultPropsTable) {
+    public constructor(defaultProps?: DefaultPropsTable) {
         this.defaultProps = defaultProps ?? {};
         this.props = {...DEFAULT_PROPS};
         this.listeners = {
             confirm: this.onConfirmed.bind(this),
         };
-        this.callbacks = {};
+        this.callbacks = {
+            confirm: undefined,
+        };
     }
 
     public show(title: string, message: string | string[], button: DialogButton | DialogButton[], options?: ModalDialogProps): Promise<DialogButton> {
@@ -44,7 +45,7 @@ export default class ModalDialogHelper {
         });
     }
 
-    public hide(button: DialogButton = udnefined): void {
+    public hide(button: DialogButton = undefined): void {
         this.callbacks.confirm?.(button);
 
         this.props.visible = false;
@@ -66,6 +67,11 @@ export default class ModalDialogHelper {
     public error(title: string, message: string | string[], button?: DialogButton | DialogButton[], options?: ModalDialogProps): Promise<DialogButton> {
         return this.showAs("error", title, message, button, options);
     }
+
+
+    private onConfirmed(button: DialogButton): void {
+        this.hide(button);
+    }
 }
 
 type DefaultPropsTable = {
@@ -79,6 +85,7 @@ type DefaultPropsTable = {
 
 const DEFAULT_PROPS: ModalDialogProps = {
     visible: false,
+    mandatory: false,
     icon: undefined,
     title: "",
     message: [],
